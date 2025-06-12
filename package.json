@@ -3,9 +3,41 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon server.ts",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "test:coverage": "vitest run --coverage",
+    "prepare": "husky",
+    "build": "tsc -p tsconfig.json && cp package.json build",
+    "start": "cd build && npm i && node server.js"
   },
-  "author": "",
+  "author": "Cal Vert Wong",
   "license": "ISC",
-  "description": ""
+  "description": "Interview weather express server",
+  "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "@eslint/json": "^0.12.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.1",
+    "@types/supertest": "^6.0.3",
+    "@vitest/coverage-istanbul": "^3.2.3",
+    "eslint": "^9.28.0",
+    "globals": "^16.2.0",
+    "husky": "^9.1.7",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.1",
+    "ts-node": "^10.9.2",
+    "typescript-eslint": "^8.34.0",
+    "vitest": "^3.2.3"
+  },
+  "dependencies": {
+    "axios": "^1.9.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "redis": "^5.5.6"
+  }
 }
