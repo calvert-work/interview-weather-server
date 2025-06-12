@@ -17,5 +17,6 @@
   ],
   "exclude": [
     "vitest.config.*",
+    "__tests__"
   ]
 }
