@@ -1,0 +1,1 @@
+export const oneMinuteInMs = 1 * 60 * 1000;
