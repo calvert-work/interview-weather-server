@@ -1,13 +1,13 @@
 import axios from "axios";
 import { Request, Response } from "express";
 
-export const getCurrentWeatherByCity = async (req: Request, res: Response) => {
+export const getFiveDaysForecastByCity = async (req: Request, res: Response) => {
 	const city = req.params.city;
 	const weatherApiKey = process.env.OPEN_WEATHER_API_KEY as string;
 	const weatherUrl = process.env.OPEN_WEATHER_URL as string;
 
 	try {
-		const response = await axios.get(`${weatherUrl}/weather`, {
+		const response = await axios.get(`${weatherUrl}/forecast`, {
 			params: {
 				q: city,
 				appid: weatherApiKey,
