@@ -1,0 +1,48 @@
+import request from "supertest";
+import { server } from "../../server";
+
+describe("Get current weather test", async () => {
+	const path = "/api/weather/current/austin";
+
+	test("first 5 requests with status code 200, last request with status code 429", async () => {
+		const responses = await Promise.all([
+			request(server).get(path),
+			request(server).get(path),
+			request(server).get(path),
+			request(server).get(path),
+			request(server).get(path),
+			request(server).get(path),
+		]);
+
+		const statusCodes = responses.map(res => res.status);
+		expect(statusCodes).toEqual([200, 200, 200, 200, 200, 429]);
+	});
+
+	test("should return 500 due to invalid api key", async () => {
+		const apiKey = process.env.OPEN_WEATHER_API_KEY;
+		delete process.env.OPEN_WEATHER_API_KEY;
+		server.set("trust proxy", true);
+
+		const response = await request(server).get(path).set("X-Forwarded-For", "1.2.3.4");
+		expect(response.status).toBe(500);
+		expect(response.body).toStrictEqual({
+			message: "Invalid weather api key"
+		});
+
+		process.env.OPEN_WEATHER_API_KEY = apiKey;
+	});
+
+	test("should return 500 due to invalid weather api url", async () => {
+		const apiKey = process.env.OPEN_WEATHER_URL;
+		delete process.env.OPEN_WEATHER_URL;
+		server.set("trust proxy", true);
+
+		const response = await request(server).get(path).set("X-Forwarded-For", "1.2.3.4");
+		expect(response.status).toBe(500);
+		expect(response.body).toStrictEqual({
+			message: "Invalid weather url"
+		});
+
+		process.env.OPEN_WEATHER_URL = apiKey;
+	});
+});
