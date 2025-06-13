@@ -1,4 +1,3 @@
-import { describe, expect, test } from "vitest";
 import request from "supertest";
 import { server } from "../../server";
 
@@ -9,7 +8,7 @@ describe("healthcheck test", async () => {
 		expect(response.status).toBe(200);
 		expect(response.body).toStrictEqual({
 			name: "Weather app server",
-			env: "development",
+			env: "test",
 			status: "OK",
 		});
 	});
