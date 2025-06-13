@@ -1,5 +1,5 @@
 import rateLimit from "express-rate-limit";
-import { oneMinuteInMs } from "../constants/constants";
+import { oneMinuteInMs } from "../../constants/constants";
 
 export const rateLimiter = rateLimit({
 	windowMs: oneMinuteInMs,
