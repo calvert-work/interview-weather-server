@@ -1,9 +1,13 @@
 import { mockGetCurrentWeatherByCity } from "./mockResponses/mockGetCurrentWeatherByCity";
-import { mockExternalWeatherApiResponse } from "./mockResponses/mockExternalWeatherApiResponse";
+import { mockExternalGetCurrentWeatherByCity } from "./mockResponses/external/mockExternalGetCurrentWeatherByCity";
 import { mockHealthcheck } from "./mockResponses/mockHealthcheck";
+import { mockExternalGetFiveDaysForecastByCity } from "./mockResponses/external/mockExternalGetFiveDaysForecastByCity";
+import { mockGetFiveDaysForecastByCity } from "./mockResponses/mockGetFiveDaysForecastByCity";
 
 export const handlers = [
 	mockGetCurrentWeatherByCity,
-	mockExternalWeatherApiResponse,
+	mockGetFiveDaysForecastByCity,
+	mockExternalGetCurrentWeatherByCity,
+	mockExternalGetFiveDaysForecastByCity,
 	mockHealthcheck
 ];

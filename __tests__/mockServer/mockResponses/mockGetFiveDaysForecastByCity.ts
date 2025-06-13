@@ -3,7 +3,7 @@ import { http, HttpResponse, passthrough } from "msw";
 /**
  * Bypass response mocking for this route
  */
-export const mockGetCurrentWeatherByCity = http.get("*/api/weather/current/*", ({ request }) => {
+export const mockGetFiveDaysForecastByCity = http.get("*/api/weather/forecast/*", ({ request }) => {
 	if (request.url.endsWith("invalid")) {
 		return HttpResponse.json({
 			message: "Mock invalid city"
