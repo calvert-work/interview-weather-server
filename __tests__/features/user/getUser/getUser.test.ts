@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
-import { pgInstance } from "../../../src/db/pgInstance";
+import { pgInstance } from "../../../../src/db/pgInstance";
 import { Mock } from "vitest";
-import { getUser } from "../../../src/controllers/user/getUser";
+import { getUser } from "../../../../src/controllers/user/getUser";
+import { USERS_COLUMNS } from "../../../../src/constants/dbConstants";
 
 const mockRes = {} as unknown as Response;
 mockRes.json = vi.fn();
 mockRes.status = vi.fn(() => mockRes);
 
-vi.mock("../../../src/db/pgInstance", () => ({
+vi.mock("../../../../src/db/pgInstance", () => ({
 	pgInstance: vi.fn()
 }));
 
@@ -19,8 +20,9 @@ describe("get user controller unit test happy path", async () => {
 			select: () => ({
 				where: () => Promise.resolve([
 					{
-						first_name: "first name",
-						email: "test@test.com"
+						[USERS_COLUMNS.ID]: "Mock user id",
+						[USERS_COLUMNS.FIRST_NAME]: "first name",
+						[USERS_COLUMNS.EMAIL]: "test@test.com"
 					}
 				])
 			})
@@ -32,8 +34,9 @@ describe("get user controller unit test happy path", async () => {
 		expect(mockRes.json).toHaveBeenCalledWith({
 			message: "User found",
 			data: {
-				first_name: "first name",
-				email: "test@test.com"
+				[USERS_COLUMNS.ID]: "Mock user id",
+				[USERS_COLUMNS.FIRST_NAME]: "first name",
+				[USERS_COLUMNS.EMAIL]: "test@test.com"
 			}
 		});
 	});
