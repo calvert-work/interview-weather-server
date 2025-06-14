@@ -1,4 +1,4 @@
-export type saveFavoriteCityDto = {
+export type SaveFavoriteCityRequestDto = {
 	city: string,
 	countryCode: string,
 	userId: string

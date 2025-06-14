@@ -1,12 +1,12 @@
 import { http, HttpResponse } from "msw";
 import { MessageResponse } from "../../../../src/dto/apiResponse/MessageResponse";
-import { saveFavoriteCityDto } from "../../../../src/dto/favoriteCity/SaveFavoriteCityDto";
+import { SaveFavoriteCityRequestDto } from "../../../../src/dto/favoriteCity/SaveFavoriteCityRequestDto";
 
 /**
  * Save favorite city endpoint mock response
  */
 export const mockSaveFavoriteCity = http.post("*/api/weather/favorites", async ({ request }) => {
-	const { city, countryCode, userId } = await request.json() as saveFavoriteCityDto;
+	const { city, countryCode, userId } = await request.json() as SaveFavoriteCityRequestDto;
 
 	if (!city || !countryCode || !userId) {
 		return HttpResponse.json<MessageResponse>({

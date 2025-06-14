@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { pgInstance } from "../../db/pgInstance";
 import { DB_TABLE, FAVORITE_CITY_COLUMNS } from "../../constants/dbConstants";
-import { saveFavoriteCityDto } from "../../dto/favoriteCity/SaveFavoriteCityDto";
+import { SaveFavoriteCityRequestDto } from "../../dto/favoriteCity/SaveFavoriteCityRequestDto";
 
 export const saveFavoriteCity = async (req: Request, res: Response) => {
-	const { city, countryCode, userId } = req.body as saveFavoriteCityDto;
+	const { city, countryCode, userId } = req.body as SaveFavoriteCityRequestDto;
 
 	if (!city || !countryCode || !userId) {
 		res.status(400).json({

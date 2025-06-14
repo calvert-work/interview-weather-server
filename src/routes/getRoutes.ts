@@ -6,6 +6,7 @@ import { hasCityValueCheck } from "../middlewares/validators/hasCityValueCheck";
 import { openWeatherApiDetailsCheck } from "../middlewares/validators/openWeatherApiDetailsCheck";
 import { getFiveDaysForecastByCity } from "../controllers/weather/getFiveDaysForecastByCity";
 import { getUser } from "../controllers/user/getUser";
+import { getFavoriteCities } from "../controllers/favoriteCity/getFavoriteCities";
 
 export const getRouter = Router();
 
@@ -16,3 +17,5 @@ getRouter.get("/api/weather/current/:city", rateLimiter, hasCityValueCheck, open
 getRouter.get("/api/weather/forecast/:city", rateLimiter, hasCityValueCheck, openWeatherApiDetailsCheck, getFiveDaysForecastByCity);
 
 getRouter.get("/api/weather/user/:email", getUser);
+
+getRouter.get("/api/weather/favorites", getFavoriteCities);
