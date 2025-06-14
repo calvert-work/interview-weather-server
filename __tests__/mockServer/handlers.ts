@@ -1,13 +1,17 @@
-import { mockGetCurrentWeatherByCity } from "./mockResponses/mockGetCurrentWeatherByCity";
+import { mockGetCurrentWeatherByCity } from "./mockResponses/weather/mockGetCurrentWeatherByCity";
 import { mockExternalGetCurrentWeatherByCity } from "./mockResponses/external/mockExternalGetCurrentWeatherByCity";
 import { mockHealthcheck } from "./mockResponses/mockHealthcheck";
 import { mockExternalGetFiveDaysForecastByCity } from "./mockResponses/external/mockExternalGetFiveDaysForecastByCity";
-import { mockGetFiveDaysForecastByCity } from "./mockResponses/mockGetFiveDaysForecastByCity";
+import { mockGetFiveDaysForecastByCity } from "./mockResponses/weather/mockGetFiveDaysForecastByCity";
+import { mockGetUser } from "./mockResponses/user/mockGetUser";
+import { mockSaveNewUser } from "./mockResponses/user/mockSaveNewUser";
 
 export const handlers = [
 	mockGetCurrentWeatherByCity,
 	mockGetFiveDaysForecastByCity,
 	mockExternalGetCurrentWeatherByCity,
 	mockExternalGetFiveDaysForecastByCity,
-	mockHealthcheck
+	mockHealthcheck,
+	mockGetUser,
+	mockSaveNewUser
 ];
