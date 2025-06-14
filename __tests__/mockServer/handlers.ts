@@ -5,6 +5,7 @@ import { mockExternalGetFiveDaysForecastByCity } from "./mockResponses/external/
 import { mockGetFiveDaysForecastByCity } from "./mockResponses/weather/mockGetFiveDaysForecastByCity";
 import { mockGetUser } from "./mockResponses/user/mockGetUser";
 import { mockSaveNewUser } from "./mockResponses/user/mockSaveNewUser";
+import { mockSaveFavoriteCity } from "./mockResponses/favoriteCity/mockSaveFavoriteCity";
 
 export const handlers = [
 	mockGetCurrentWeatherByCity,
@@ -13,5 +14,6 @@ export const handlers = [
 	mockExternalGetFiveDaysForecastByCity,
 	mockHealthcheck,
 	mockGetUser,
-	mockSaveNewUser
+	mockSaveNewUser,
+	mockSaveFavoriteCity
 ];
