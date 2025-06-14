@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 export const hasCityValueCheck = (req: Request, res: Response, next: NextFunction) => {
-	const city = req.params.city;
+	const { city } = req.params;
 
 	if (!city) {
 		res.status(400).json({
