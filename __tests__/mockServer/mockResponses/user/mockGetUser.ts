@@ -1,6 +1,7 @@
 import { http, HttpResponse } from "msw";
 import { MessageResponse } from "../../../../src/dto/apiResponse/MessageResponse";
 import { MessageWithDataResponse } from "../../../../src/dto/apiResponse/MessageWithDataResponse";
+import { USERS_COLUMNS } from "../../../../src/constants/dbConstants";
 
 /**
  * Get user endpoint mock response
@@ -12,8 +13,9 @@ export const mockGetUser = http.get("*/api/weather/user/*", async ({ request }) 
 		return HttpResponse.json<MessageWithDataResponse>({
 			message: "Mock user found",
 			data: {
-				first_name: "Mock first name",
-				email: "Mock email"
+				[USERS_COLUMNS.ID]: "Mock user id",
+				[USERS_COLUMNS.FIRST_NAME]: "Mock first name",
+				[USERS_COLUMNS.EMAIL]: "Mock email"
 			}
 		}, { status: 200 });
 	} else if (url.endsWith("notfound@test.com")) {

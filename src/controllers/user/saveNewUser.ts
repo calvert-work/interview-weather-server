@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { pgInstance } from "../../db/pgInstance";
-import { DB_TABLE } from "../../constants/constants";
 import { isEmail } from "../../utils/isEmail";
 import { SaveNewUserDto } from "../../dto/user/SaveNewUserDto";
+import { DB_TABLE, USERS_COLUMNS } from "../../constants/dbConstants";
 
 export const saveNewUser = async (req: Request, res: Response) => {
 	const { firstName, email } = req.body as SaveNewUserDto;
@@ -22,7 +22,13 @@ export const saveNewUser = async (req: Request, res: Response) => {
 	}
 
 	try {
-		const [userId] = await pgInstance(DB_TABLE.USERS).insert({ email, first_name: firstName }).onConflict("email").ignore().returning("id");
+		const [userId] = await pgInstance(DB_TABLE.USERS).insert({
+			[USERS_COLUMNS.EMAIL]: email,
+			[USERS_COLUMNS.FIRST_NAME]: firstName
+		})
+			.onConflict(USERS_COLUMNS.EMAIL)
+			.ignore()
+			.returning(USERS_COLUMNS.ID);
 
 		if (userId) {
 			res.status(201).json({

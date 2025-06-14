@@ -1,13 +1,13 @@
-import { saveNewUser } from "../../../src/controllers/user/saveNewUser";
+import { saveNewUser } from "../../../../src/controllers/user/saveNewUser";
 import { Request, Response } from "express";
-import { pgInstance } from "../../../src/db/pgInstance";
+import { pgInstance } from "../../../../src/db/pgInstance";
 import { Mock } from "vitest";
 
 const mockRes = {} as unknown as Response;
 mockRes.json = vi.fn();
 mockRes.status = vi.fn(() => mockRes);
 
-vi.mock("../../../src/db/pgInstance", () => ({
+vi.mock("../../../../src/db/pgInstance", () => ({
 	pgInstance: vi.fn()
 }));
 

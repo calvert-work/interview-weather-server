@@ -1,5 +1,6 @@
-import { server } from "../../../server";
+import { server } from "../../../../server";
 import request from "supertest";
+import { USERS_COLUMNS } from "../../../../src/constants/dbConstants";
 
 vi.mock("../../../src/db/pgInstance", () => ({
 	pgInstance: vi.fn()
@@ -16,8 +17,9 @@ describe("get user intergration test happy path", async () => {
 		expect(response.body).toStrictEqual({
 			message: "Mock user found",
 			data: {
-				first_name: "Mock first name",
-				email: "Mock email"
+				[USERS_COLUMNS.ID]: "Mock user id",
+				[USERS_COLUMNS.FIRST_NAME]: "Mock first name",
+				[USERS_COLUMNS.EMAIL]: "Mock email"
 			}
 		});
 	});

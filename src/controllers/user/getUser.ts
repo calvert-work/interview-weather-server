@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { pgInstance } from "../../db/pgInstance";
-import { DB_TABLE } from "../../constants/constants";
 import { isEmail } from "../../utils/isEmail";
 import { GetUserDto } from "../../dto/user/GetUserDto";
+import { DB_TABLE, USERS_COLUMNS } from "../../constants/dbConstants";
 
 export const getUser = async (req: Request, res: Response) => {
 	const { email } = req.params as GetUserDto;
@@ -22,7 +22,13 @@ export const getUser = async (req: Request, res: Response) => {
 	}
 
 	try {
-		const [user] = await pgInstance(DB_TABLE.USERS).select("first_name", "email").where({ email });
+		const [user] = await pgInstance(DB_TABLE.USERS)
+			.select([
+				USERS_COLUMNS.ID,
+				USERS_COLUMNS.FIRST_NAME,
+				USERS_COLUMNS.EMAIL
+			])
+			.where({ [USERS_COLUMNS.EMAIL]: email });
 
 		if (user) {
 			res.status(200).json({
