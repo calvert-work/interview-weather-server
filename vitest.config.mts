@@ -7,7 +7,8 @@ export default defineConfig({
 		setupFiles: "./__tests__/vitestSetupFile.ts",
 		coverage: {
 			provider: "istanbul",
-			reporter: ["html"]
+			reporter: ["html"],
+			exclude: ["build", "__tests__"]
 		}
 	}
 })
