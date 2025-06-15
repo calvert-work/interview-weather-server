@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { pgInstance } from "../../db/pgInstance";
 import { isEmail } from "../../utils/isEmail";
-import { SaveNewUserDto } from "../../dto/user/SaveNewUserDto";
 import { DB_TABLE, USERS_COLUMNS } from "../../constants/dbConstants";
+import { SaveNewUserRequestDto } from "../../dto/user/SaveNewUserRequestDto";
 
 export const saveNewUser = async (req: Request, res: Response) => {
-	const { firstName, email } = req.body as SaveNewUserDto;
+	const { firstName, email } = req.body as SaveNewUserRequestDto;
 
 	if (!firstName || !email) {
 		res.status(400).json({
