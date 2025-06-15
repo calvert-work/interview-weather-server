@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { Request, Response } from "express";
 
 export const getFiveDaysForecastByCity = async (req: Request, res: Response) => {
@@ -17,12 +17,10 @@ export const getFiveDaysForecastByCity = async (req: Request, res: Response) => 
 
 		res.status(200).json(response.data);
 	} catch (error) {
-		if (axios.isAxiosError(error)) {
-			if (error.status === 404) {
-				res.status(404).json({
-					message: "Invalid city"
-				});
-			}
+		if ((error as AxiosError).status === 404) {
+			res.status(404).json({
+				message: "Invalid city"
+			});
 		} else {
 			res.status(500).json({
 				message: "Server error while getting current weather by city",
