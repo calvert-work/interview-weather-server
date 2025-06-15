@@ -6,7 +6,8 @@ import { SaveFavoriteCityRequestDto } from "../../../../src/dto/favoriteCity/Sav
  * Save favorite city endpoint mock response
  */
 export const mockSaveFavoriteCity = http.post("*/api/weather/favorites", async ({ request }) => {
-	const { city, countryCode, userId } = await request.json() as SaveFavoriteCityRequestDto;
+	const { city, countryCode } = await request.json() as SaveFavoriteCityRequestDto;
+	const userId = request.headers.get("user-id");
 
 	if (!city || !countryCode || !userId) {
 		return HttpResponse.json<MessageResponse>({
@@ -20,7 +21,7 @@ export const mockSaveFavoriteCity = http.post("*/api/weather/favorites", async (
 		}, { status: 500 });
 	}
 
-	if (city === "Austin" && userId === "mock user id") {
+	if (city === "Austin" && userId === "mock-user-id") {
 		return HttpResponse.json<MessageResponse>({
 			message: "Mock favorite city added successfully"
 		}, { status: 201 });

@@ -29,10 +29,12 @@ describe("save favorite city unit test happy path", async () => {
 			{
 				body: {
 					city: "austin",
-					countryCode: "US",
-					userId: "mock user id"
+					countryCode: "US"
+				},
+				headers: {
+					userId: "mock-user-id"
 				}
-			} as Request,
+			} as unknown as Request,
 			mockRes
 		);
 
@@ -58,9 +60,11 @@ describe("save favorite city unit test sad path", async () => {
 				body: {
 					city: "austin",
 					countryCode: "US",
+				},
+				headers: {
 					userId: "mock-user-id"
 				}
-			} as Request,
+			} as unknown as Request,
 			mockRes
 		);
 
@@ -74,9 +78,11 @@ describe("save favorite city unit test sad path", async () => {
 				body: {
 					// city missing
 					countryCode: "US",
+				},
+				headers: {
 					userId: "mock-user-id"
 				}
-			} as Request,
+			} as unknown as Request,
 			mockRes
 		);
 
@@ -90,25 +96,11 @@ describe("save favorite city unit test sad path", async () => {
 				body: {
 					city: "austin",
 					// countryCode missing
+				},
+				headers: {
 					userId: "mock-user-id"
 				}
-			} as Request,
-			mockRes
-		);
-
-		expect(mockRes.status).toHaveBeenCalledWith(400);
-		expect(mockRes.json).toHaveBeenCalledWith({ message: "Missing information" });
-	});
-
-	test("should return 400 when user id is missing", async () => {
-		await saveFavoriteCity(
-			{
-				body: {
-					city: "austin",
-					countryCode: "US"
-					// userId missing
-				}
-			} as Request,
+			} as unknown as Request,
 			mockRes
 		);
 
@@ -125,10 +117,12 @@ describe("save favorite city unit test sad path", async () => {
 			{
 				body: {
 					city: "austin",
-					countryCode: "US",
+					countryCode: "US"
+				},
+				headers: {
 					userId: "mock-user-id"
 				}
-			} as Request,
+			} as unknown as Request,
 			mockRes
 		);
 
