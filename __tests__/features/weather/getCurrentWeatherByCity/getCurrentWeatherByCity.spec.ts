@@ -1,9 +1,9 @@
 import request from "supertest";
-import { server } from "../../../server";
+import { server } from "../../../../server";
 
-describe("Get current weather by city test", async () => {
-	const path = "/api/weather/current/austin";
+const path = "/api/weather/current/austin";
 
+describe("Get current weather by city integration test happy path", async () => {
 	test("first 5 requests with status code 200, last request with status code 429", async () => {
 		const responses = await Promise.all([
 			request(server).get(path),
@@ -17,7 +17,9 @@ describe("Get current weather by city test", async () => {
 		const statusCodes = responses.map(res => res.status);
 		expect(statusCodes).toEqual([200, 200, 200, 200, 200, 429]);
 	});
+});
 
+describe("Get current weather by city integration test sad path", async () => {
 	test("should return 500 due to invalid api key", async () => {
 		const apiKey = process.env.OPEN_WEATHER_API_KEY;
 		delete process.env.OPEN_WEATHER_API_KEY;
@@ -26,7 +28,7 @@ describe("Get current weather by city test", async () => {
 		const response = await request(server).get(path).set("X-Forwarded-For", "1.2.3.4"); // set X-Forwarded-For to bypass rate limiter
 		expect(response.status).toBe(500);
 		expect(response.body).toStrictEqual({
-			message: "Invalid weather api key"
+			message: "Missing weather api information"
 		});
 
 		process.env.OPEN_WEATHER_API_KEY = apiKey;
@@ -40,7 +42,7 @@ describe("Get current weather by city test", async () => {
 		const response = await request(server).get(path).set("X-Forwarded-For", "1.2.3.4"); // set X-Forwarded-For to bypass rate limiter
 		expect(response.status).toBe(500);
 		expect(response.body).toStrictEqual({
-			message: "Invalid weather url"
+			message: "Missing weather api information"
 		});
 
 		process.env.OPEN_WEATHER_URL = apiKey;
