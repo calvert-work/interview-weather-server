@@ -27,7 +27,7 @@ describe("Get 5 days forecast by city test", async () => {
 		const response = await request(server).get(forecastPath).set("X-Forwarded-For", "1.2.3.4"); // set X-Forwarded-For to bypass rate limiter
 		expect(response.status).toBe(500);
 		expect(response.body).toStrictEqual({
-			message: "Invalid weather api key"
+			message: "Missing weather api information"
 		});
 
 		process.env.OPEN_WEATHER_API_KEY = apiKey;
@@ -41,7 +41,7 @@ describe("Get 5 days forecast by city test", async () => {
 		const response = await request(server).get(forecastPath).set("X-Forwarded-For", "1.2.3.4"); // set X-Forwarded-For to bypass rate limiter
 		expect(response.status).toBe(500);
 		expect(response.body).toStrictEqual({
-			message: "Invalid weather url"
+			message: "Missing weather api information"
 		});
 
 		process.env.OPEN_WEATHER_URL = apiKey;

@@ -17,7 +17,7 @@ export const FAVORITE_CITY_COLUMNS = Object.freeze({
 	COUNTRY_CODE: "country_code"
 });
 
-export const WEATHER_HISTORY = Object.freeze({
+export const WEATHER_HISTORY_COLUMNS = Object.freeze({
 	ID: "id",
 	USER_ID: "user_id",
 	CITY_NAME: "city_name",
