@@ -8,6 +8,7 @@ import { mockSaveNewUser } from "./mockResponses/user/mockSaveNewUser";
 import { mockSaveFavoriteCity } from "./mockResponses/favoriteCity/mockSaveFavoriteCity";
 import { mockGetFavoriteCities } from "./mockResponses/favoriteCity/mockGetFavoriteCities";
 import { mockDeleteFavoriteCity } from "./mockResponses/favoriteCity/mockDeleteFavoriteCity";
+import { mockGetSearchHistory } from "./mockResponses/searchHistory/mockGetSearchHistory";
 
 export const handlers = [
 	mockGetCurrentWeatherByCity,
@@ -19,5 +20,6 @@ export const handlers = [
 	mockSaveNewUser,
 	mockSaveFavoriteCity,
 	mockGetFavoriteCities,
-	mockDeleteFavoriteCity
+	mockDeleteFavoriteCity,
+	mockGetSearchHistory
 ];
