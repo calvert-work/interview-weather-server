@@ -12,7 +12,7 @@ export const getRouter = Router();
 
 getRouter.get("/healthcheck", healthcheck);
 
-getRouter.get("/api/weather/current/:city", rateLimiter, hasCityValueCheck, openWeatherApiDetailsCheck, getCurrentWeatherByCity);
+getRouter.get("/api/weather/current{/:city}", rateLimiter, hasCityValueCheck, openWeatherApiDetailsCheck, getCurrentWeatherByCity);
 
 getRouter.get("/api/weather/forecast/:city", rateLimiter, hasCityValueCheck, openWeatherApiDetailsCheck, getFiveDaysForecastByCity);
 

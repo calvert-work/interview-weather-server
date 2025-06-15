@@ -6,14 +6,14 @@ export const openWeatherApiDetailsCheck = (_: Request, res: Response, next: Next
 
 	if (!weatherApiKey) {
 		res.status(500).json({
-			message: "Invalid weather api key"
+			message: "Missing weather api information"
 		});
 		return;
 	}
 
 	if (!weatherUrl) {
 		res.status(500).json({
-			message: "Invalid weather url"
+			message: "Missing weather api information"
 		});
 		return;
 	}

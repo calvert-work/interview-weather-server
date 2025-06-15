@@ -5,7 +5,7 @@ export const hasCityValueCheck = (req: Request, res: Response, next: NextFunctio
 
 	if (!city) {
 		res.status(400).json({
-			message: "Invalid user input: city is not provided"
+			message: "Missing information"
 		});
 		return;
 	}
