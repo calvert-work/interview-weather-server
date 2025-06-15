@@ -7,14 +7,7 @@ export const openWeatherApiDetailsCheck = (_: Request, res: Response, next: Next
 	const weatherApiKey = process.env.OPEN_WEATHER_API_KEY;
 	const weatherUrl = process.env.OPEN_WEATHER_URL;
 
-	if (!weatherApiKey) {
-		res.status(500).json({
-			message: "Missing weather api information" // return vague message for security reasons
-		});
-		return;
-	}
-
-	if (!weatherUrl) {
+	if (!weatherApiKey || !weatherUrl) {
 		res.status(500).json({
 			message: "Missing weather api information" // return vague message for security reasons
 		});
