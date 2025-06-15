@@ -1,5 +1,5 @@
 import request from "supertest";
-import { server } from "../../server";
+import { server } from "../../../server";
 
 describe("healthcheck test", async () => {
 	test("should return healthcheck object", async () => {

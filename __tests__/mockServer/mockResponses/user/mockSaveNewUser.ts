@@ -1,12 +1,12 @@
 import { http, HttpResponse } from "msw";
 import { MessageResponse } from "../../../../src/dto/apiResponse/MessageResponse";
-import { SaveNewUserDto } from "../../../../src/dto/user/SaveNewUserDto";
+import { SaveNewUserRequestDto } from "../../../../src/dto/user/SaveNewUserRequestDto";
 
 /**
  * Get user endpoint mock response
  */
 export const mockSaveNewUser = http.post("*/api/weather/user", async ({ request }) => {
-	const { firstName, email } = await request.json() as SaveNewUserDto;
+	const { firstName, email } = await request.json() as SaveNewUserRequestDto;
 
 	if (!firstName || !email) {
 		return HttpResponse.json<MessageResponse>({

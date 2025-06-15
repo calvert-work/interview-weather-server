@@ -5,8 +5,12 @@ import { deleteSearchHistory } from "../controllers/searchHistory/deleteSearchHi
 
 export const delRouter = Router();
 
-// added this route to handle the situation where path param isn't provided
-delRouter.delete("/api/weather/favorites/", deleteFavoriteCity);
-delRouter.delete("/api/weather/favorites/:id", deleteFavoriteCity);
+/**
+ * Delete favorite city by favorite city id own by a user
+ */
+delRouter.delete("/api/weather/favorites{/:id}", deleteFavoriteCity);
 
+/**
+ * Delete all search history own by a user, user id has to present in the request header to pass the headerHasUserIdCheck
+ */
 delRouter.delete("/api/weather/history", headerHasUserIdCheck, deleteSearchHistory);

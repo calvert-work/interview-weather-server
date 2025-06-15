@@ -1,5 +1,5 @@
 import request from "supertest";
-import { server } from "../../../server";
+import { server } from "../../../../server";
 
 describe("Get 5 days forecast by city test", async () => {
 	const weatherPath = "/api/weather/current/austin";

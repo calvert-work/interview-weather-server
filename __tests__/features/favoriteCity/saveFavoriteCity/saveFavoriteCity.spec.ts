@@ -12,8 +12,7 @@ describe("save favorite city intergration test happy path", async () => {
 		const response = await request(server).post(path).send({
 			city: "Austin",
 			countryCode: "US",
-			userId: "mock user id"
-		});
+		}).set("user-id", "mock-user-id");
 
 		expect(response.status).toBe(201);
 		expect(response.body).toEqual({
@@ -27,8 +26,7 @@ describe("get user intergration test sad path", async () => {
 		const response = await request(server).post(path).send({
 			city: "Austin",
 			countryCode: "US",
-			userId: "already-exist"
-		});
+		}).set("user-id", "already-exist");
 
 		expect(response.status).toBe(409);
 		expect(response.body).toEqual({
@@ -39,8 +37,7 @@ describe("get user intergration test sad path", async () => {
 	test("should return 400 when required fields are missing", async () => {
 		const response = await request(server).post(path).send({
 			countryCode: "US",
-			userId: "mock user id"
-		});
+		}).set("user-id", "mock-user-id");
 
 		expect(response.status).toBe(400);
 		expect(response.body).toEqual({
@@ -52,8 +49,7 @@ describe("get user intergration test sad path", async () => {
 		const response = await request(server).post(path).send({
 			city: "Houston",
 			countryCode: "US",
-			userId: "non-existent-id"
-		});
+		}).set("user-id", "non-existent-id");
 
 		expect(response.status).toBe(500);
 		expect(response.body).toEqual({

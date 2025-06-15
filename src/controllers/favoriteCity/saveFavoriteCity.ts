@@ -4,9 +4,10 @@ import { DB_TABLE, FAVORITE_CITY_COLUMNS } from "../../constants/dbConstants";
 import { SaveFavoriteCityRequestDto } from "../../dto/favoriteCity/SaveFavoriteCityRequestDto";
 
 export const saveFavoriteCity = async (req: Request, res: Response) => {
-	const { city, countryCode, userId } = req.body as SaveFavoriteCityRequestDto;
+	const { city, countryCode } = req.body as SaveFavoriteCityRequestDto;
+	const userId = req.headers["user-id"];
 
-	if (!city || !countryCode || !userId) {
+	if (!city || !countryCode) {
 		res.status(400).json({
 			message: "Missing information"
 		});

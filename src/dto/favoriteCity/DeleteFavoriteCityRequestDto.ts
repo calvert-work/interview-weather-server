@@ -1,3 +1,3 @@
 export type DeleteFavoriteCityRequestDto = {
-	id: string
+	id: string // favorite city id
 }
