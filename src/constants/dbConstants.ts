@@ -22,5 +22,6 @@ export const WEATHER_HISTORY_COLUMNS = Object.freeze({
 	USER_ID: "user_id",
 	CITY_NAME: "city_name",
 	COUNTRY_CODE: "country_code",
-	WEATHER_DATA: "weather_data"
+	WEATHER_DATA: "weather_data",
+	CREATED_AT: "created_at"
 });
