@@ -15,7 +15,7 @@ export const saveFavoriteCity = async (req: Request, res: Response) => {
 	}
 
 	try {
-		const [favoriteCityId] = await pgInstance(DB_TABLE.FAVORITE_CITY)
+		const [favoriteCity] = await pgInstance(DB_TABLE.FAVORITE_CITY)
 			.insert({
 				[FAVORITE_CITY_COLUMNS.CITY_NAME]: city,
 				[FAVORITE_CITY_COLUMNS.COUNTRY_CODE]: countryCode,
@@ -23,12 +23,13 @@ export const saveFavoriteCity = async (req: Request, res: Response) => {
 			})
 			.onConflict([FAVORITE_CITY_COLUMNS.USER_ID, FAVORITE_CITY_COLUMNS.CITY_NAME])
 			.ignore()
-			.returning([FAVORITE_CITY_COLUMNS.ID]);
+			.returning("*");
 
 
-		if (favoriteCityId) {
+		if (favoriteCity) {
 			res.status(201).json({
-				message: "Favorite city added successfully"
+				message: "Favorite city added successfully",
+				data: favoriteCity
 			});
 		} else {
 			res.status(409).json({
