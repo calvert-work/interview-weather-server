@@ -29,7 +29,11 @@ describe("get current weather by city unit test happy path", () => {
 
 		mockedPgInstance.mockReturnValueOnce({
 			insert: vi.fn().mockReturnValueOnce({
-				returning: vi.fn().mockReturnValueOnce([{ [WEATHER_HISTORY_COLUMNS.ID]: "mock-history-id" }])
+				onConflict: vi.fn().mockReturnValueOnce({
+					ignore: vi.fn().mockReturnValueOnce({
+						returning: vi.fn().mockReturnValueOnce([{ [WEATHER_HISTORY_COLUMNS.ID]: "mock-history-id" }])
+					})
+				})
 			})
 		});
 

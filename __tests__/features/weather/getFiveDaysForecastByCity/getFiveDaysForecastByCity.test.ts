@@ -14,7 +14,10 @@ mockRes.status = vi.fn(() => mockRes);
 
 describe("getFiveDaysForecastByCity unit test happy path", () => {
 	test("should return 200 and forecast data when successful", async () => {
-		const mockForecastData = { temp: 25 };
+		const mockForecastData = {
+			message: "Get forecast weather successfully",
+			data: expect.any(Object)
+		};
 
 		mockedAxios.get = vi.fn().mockReturnValueOnce({ data: mockForecastData });
 

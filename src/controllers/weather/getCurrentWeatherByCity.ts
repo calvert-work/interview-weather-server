@@ -27,7 +27,10 @@ export const getCurrentWeatherByCity = async (req: Request, res: Response) => {
 				[WEATHER_HISTORY_COLUMNS.CITY_NAME]: response.data.name,
 				[WEATHER_HISTORY_COLUMNS.COUNTRY_CODE]: response.data.sys.country,
 				[WEATHER_HISTORY_COLUMNS.WEATHER_DATA]: JSON.stringify(response.data)
-			}).returning([WEATHER_HISTORY_COLUMNS.ID]);
+			})
+				.onConflict([WEATHER_HISTORY_COLUMNS.USER_ID, WEATHER_HISTORY_COLUMNS.CITY_NAME])
+				.ignore()
+				.returning([WEATHER_HISTORY_COLUMNS.ID]);
 
 			if (historyId) {
 				historyStored = true;

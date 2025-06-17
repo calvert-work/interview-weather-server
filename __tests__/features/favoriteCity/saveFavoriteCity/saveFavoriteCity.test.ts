@@ -39,7 +39,7 @@ describe("save favorite city unit test happy path", async () => {
 		);
 
 		expect(mockRes.status).toHaveBeenCalledWith(201);
-		expect(mockRes.json).toHaveBeenCalledWith({ message: "Favorite city added successfully" });
+		expect(mockRes.json).toHaveBeenCalledWith({ message: "Favorite city added successfully", data: { id: 1 } });
 	});
 });
 

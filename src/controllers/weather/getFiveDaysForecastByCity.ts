@@ -15,7 +15,10 @@ export const getFiveDaysForecastByCity = async (req: Request, res: Response) => 
 			}
 		});
 
-		res.status(200).json(response.data);
+		res.status(200).json({
+			message: "Get forecast weather successfully",
+			data: response.data
+		});
 	} catch (error) {
 		if ((error as AxiosError).status === 404) {
 			res.status(404).json({
