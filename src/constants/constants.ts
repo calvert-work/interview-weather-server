@@ -1,0 +1,1 @@
+export const thirtySecondsInMs = 30 * 1000;
