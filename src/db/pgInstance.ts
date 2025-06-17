@@ -5,7 +5,7 @@ export const pgInstance = knex({
 	client: "pg",
 	connection: {
 		connectionString: process.env.DATABASE_URL,
-		ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
+		ssl: process.env.NODE_ENV === "staging" ? { rejectUnauthorized: false } : false,
 	}
 });
 
