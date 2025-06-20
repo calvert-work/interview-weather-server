@@ -28,7 +28,7 @@ describe("save new user controller unit test happy path", async () => {
 		await saveNewUser({ body: { firstName: "first name", email: "test@test.com" } } as Request, mockRes);
 
 		expect(mockRes.status).toHaveBeenCalledWith(201);
-		expect(mockRes.json).toHaveBeenCalledWith({ message: "User saved successfully" });
+		expect(mockRes.json).toHaveBeenCalledWith({ message: "User saved successfully", data: { userId: 1 } });
 	});
 });
 

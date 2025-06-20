@@ -5,7 +5,6 @@ import { rateLimiter } from "../middlewares/limiters/rateLimiter";
 import { hasCityValueCheck } from "../middlewares/validators/hasCityValueCheck";
 import { openWeatherApiDetailsCheck } from "../middlewares/validators/openWeatherApiDetailsCheck";
 import { getFiveDaysForecastByCity } from "../controllers/weather/getFiveDaysForecastByCity";
-import { getUser } from "../controllers/user/getUser";
 import { getFavoriteCities } from "../controllers/favoriteCity/getFavoriteCities";
 import { getSearchHistory } from "../controllers/searchHistory/getSearchHistory";
 import { headerHasUserIdCheck } from "../middlewares/validators/headerHasUserIdCheck";
@@ -41,13 +40,6 @@ getRouter.get("/api/weather/current{/:city}", rateLimiter, hasCityValueCheck, op
  * 3) Must have weather api key and url
  */
 getRouter.get("/api/weather/forecast{/:city}", rateLimiter, hasCityValueCheck, openWeatherApiDetailsCheck, getFiveDaysForecastByCity);
-
-/**
- * Get "registered" user details.
- * 
- * Only those with a registered account can have their search history stored and city to be added to favorite
- */
-getRouter.get("/api/weather/user{/:email}", getUser);
 
 /**
  * Get all stored favorite cities

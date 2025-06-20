@@ -2,10 +2,10 @@ import { Request, Response } from "express";
 import { pgInstance } from "../../db/pgInstance";
 import { isEmail } from "../../utils/isEmail";
 import { DB_TABLE, USERS_COLUMNS } from "../../constants/dbConstants";
-import { GetUserRequestDto } from "../../dto/user/GetUserRequestDto";
+import { LoginUserRequestDto } from "../../dto/user/LoginUserRequestDto";
 
-export const getUser = async (req: Request, res: Response) => {
-	const { email } = req.params as GetUserRequestDto;
+export const loginUser = async (req: Request, res: Response) => {
+	const { email } = req.body as LoginUserRequestDto;
 
 	if (!email) {
 		res.status(400).json({

@@ -32,7 +32,10 @@ export const saveNewUser = async (req: Request, res: Response) => {
 
 		if (userId) {
 			res.status(201).json({
-				message: "User saved successfully"
+				message: "User saved successfully",
+				data: {
+					userId : userId.id
+				}
 			});
 		} else {
 			res.status(409).json({

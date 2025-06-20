@@ -3,7 +3,7 @@ import { mockExternalGetCurrentWeatherByCity } from "./mockResponses/external/mo
 import { mockHealthcheck } from "./mockResponses/mockHealthcheck";
 import { mockExternalGetFiveDaysForecastByCity } from "./mockResponses/external/mockExternalGetFiveDaysForecastByCity";
 import { mockGetFiveDaysForecastByCity } from "./mockResponses/weather/mockGetFiveDaysForecastByCity";
-import { mockGetUser } from "./mockResponses/user/mockGetUser";
+import { mockLoginUser } from "./mockResponses/user/mockLoginUser";
 import { mockSaveNewUser } from "./mockResponses/user/mockSaveNewUser";
 import { mockSaveFavoriteCity } from "./mockResponses/favoriteCity/mockSaveFavoriteCity";
 import { mockGetFavoriteCities } from "./mockResponses/favoriteCity/mockGetFavoriteCities";
@@ -17,7 +17,7 @@ export const handlers = [
 	mockExternalGetCurrentWeatherByCity,
 	mockExternalGetFiveDaysForecastByCity,
 	mockHealthcheck,
-	mockGetUser,
+	mockLoginUser,
 	mockSaveNewUser,
 	mockSaveFavoriteCity,
 	mockGetFavoriteCities,

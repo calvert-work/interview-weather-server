@@ -5,7 +5,7 @@ import { SaveNewUserRequestDto } from "../../../../src/dto/user/SaveNewUserReque
 /**
  * Get user endpoint mock response
  */
-export const mockSaveNewUser = http.post("*/api/weather/user", async ({ request }) => {
+export const mockSaveNewUser = http.post("*/api/weather/register", async ({ request }) => {
 	const { firstName, email } = await request.json() as SaveNewUserRequestDto;
 
 	if (!firstName || !email) {

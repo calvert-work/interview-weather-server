@@ -5,7 +5,7 @@ vi.mock("../../../src/db/pgInstance", () => ({
 	pgInstance: vi.fn()
 }));
 
-const path = "/api/weather/user";
+const path = "/api/weather/register";
 
 describe("save new user intergration test happy path", async () => {
 	test("should return 201 when user is saved successfully", async () => {
